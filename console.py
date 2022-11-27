@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Command Line implemntation for Air BnB clone
+"""
+
 
 import cmd
 from models.base_model import BaseModel
