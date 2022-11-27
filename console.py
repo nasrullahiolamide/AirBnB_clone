@@ -66,6 +66,32 @@ class HBNBCommand(cmd.Cmd):
             except IndexError:
                 print("** instance Id missing **")
 
+    def do_destroy(self, line):
+        """
+        delete an instance and update it in the json file
+        """
+        line_ent = line.split(" ")
+        all_inst = storage.all()
+
+        if len(line) == 0:
+            print("** class name missing **")
+        
+        elif line_ent[0] not in self.allModels:
+            print("** class doesn't exist **")
+
+        else:
+            try:
+                if line_ent[1]:
+                    name = "{}.{}".format(line_ent[0], line_ent[1])
+                    if name not in all_inst.keys():
+                        print("** no instance found **")
+                    else:
+                        del all_inst[name]
+                        storage.save()
+            except IndexError:
+                print("** instance Id missing **")
+        
+        pass
 
 
 if __name__ == "__main__":
